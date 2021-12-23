@@ -14,18 +14,18 @@ public class SaveUserGateway implements SaveUserGatewayInterface {
      * @param userToBeSaved the user object that matches the username
      */
     public void saveUser(String username, User userToBeSaved){
-        File file = new File("src/Main/user.ser");
+        File file = new File("Main/user.ser");
         if (!(file.length() == 0)) {
             DictionaryReadWriter rw = new DictionaryReadWriter();
-            HashMap<String, Object> usersSavedDict = rw.readFromFile("src/Main/user.ser");
+            HashMap<String, Object> usersSavedDict = rw.readFromFile("Main/user.ser");
             usersSavedDict.put(username, userToBeSaved);
-            rw.saveToFile("src/Main/user.ser", usersSavedDict);
+            rw.saveToFile("Main/user.ser", usersSavedDict);
         }
         else{ // file is empty
             DictionaryReadWriter rw = new DictionaryReadWriter();
             HashMap<String, User> newHashMap = new HashMap<>();
             newHashMap.put(username, userToBeSaved);
-            rw.saveToFile("src/Main/user.ser", newHashMap);
+            rw.saveToFile("Main/user.ser", newHashMap);
         }
     }
 

@@ -17,11 +17,11 @@ public class GetUserGateway implements SignInGatewayInterface {
      * @return A newly created or old user
      */
     public User getUser(String username){
-        File file = new File("src/Main/user.ser");
+        File file = new File("Main/user.ser");
         // access the serialized file for this user.
         DictionaryReadWriter rw = new DictionaryReadWriter();
         if (!(file.length() == 0)) {
-            HashMap<String, Object> usersSavedDict = rw.readFromFile("src/Main/user.ser");
+            HashMap<String, Object> usersSavedDict = rw.readFromFile("Main/user.ser");
             if (usersSavedDict.containsKey(username)) {
                 return (User) usersSavedDict.get(username);
             }

@@ -21,42 +21,42 @@ public class SaveProductGateway implements SaveProductGatewayInterface {
 
         DictionaryReadWriter rw = new DictionaryReadWriter();
 
-        File file = new File("src/Main/product.ser");
+        File file = new File("Main/product.ser");
         if (file.length() == 0) {
             HashMap<String, List<String>> emptyHashMap = new HashMap<>();
             ArrayList<String> productIDList = new ArrayList<>();
             productIDList.add(productId);
             emptyHashMap.put(tag, productIDList);
-            rw.saveToFile("src/Main/product.ser", emptyHashMap);
+            rw.saveToFile("Main/product.ser", emptyHashMap);
         }
         else {
 
-            HashMap<String, Object> productsSavedDict = rw.readFromFile("src/Main/product.ser");
+            HashMap<String, Object> productsSavedDict = rw.readFromFile("Main/product.ser");
             // {tag:[ID]}
             if (productsSavedDict.containsKey(tag)) {
                 List<String> productIDList = (List<String>) productsSavedDict.get(tag);
                 productIDList.add(productId);
                 productsSavedDict.put(tag, productIDList);
-                rw.saveToFile("src/Main/product.ser", productsSavedDict);
+                rw.saveToFile("Main/product.ser", productsSavedDict);
             } else {
                 List<String> newList = new ArrayList<>();
                 newList.add(newProduct.getId());
                 productsSavedDict.put(tag, newList);
-                rw.saveToFile("src/Main/product.ser", productsSavedDict);
+                rw.saveToFile("Main/product.ser", productsSavedDict);
             }
         }
 
         // {ID: product}
-        File file2 = new File("src/Main/IdToProduct.ser");
+        File file2 = new File("Main/IdToProduct.ser");
         if (file2.length() == 0) {
             HashMap<String, Object> idToProductDict = new HashMap<>();
             idToProductDict.put(productId, newProduct);
-            rw.saveToFile("src/Main/IdToProduct.ser", idToProductDict);
+            rw.saveToFile("Main/IdToProduct.ser", idToProductDict);
         }
         else {
-            HashMap<String, Object> idToProductDict = rw.readFromFile("src/Main/IdToProduct.ser");
+            HashMap<String, Object> idToProductDict = rw.readFromFile("Main/IdToProduct.ser");
             idToProductDict.put(productId, newProduct);
-            rw.saveToFile("src/Main/IdToProduct.ser", idToProductDict);
+            rw.saveToFile("Main/IdToProduct.ser", idToProductDict);
         }
 
     }
@@ -67,12 +67,12 @@ public class SaveProductGateway implements SaveProductGatewayInterface {
     public void saveChangedProduct(Product product) {
 
         DictionaryReadWriter rw = new DictionaryReadWriter();
-        File file = new File("src/Main/IdToProduct.ser");
+        File file = new File("Main/IdToProduct.ser");
         if (!(file.length() == 0)) {
-            HashMap<String, Object> productsSavedDict = rw.readFromFile("src/Main/IdToProduct.ser");
+            HashMap<String, Object> productsSavedDict = rw.readFromFile("Main/IdToProduct.ser");
             String productId = product.getId();
             productsSavedDict.put(productId,product);
-            rw.saveToFile("src/Main/IdToProduct.ser",productsSavedDict);
+            rw.saveToFile("Main/IdToProduct.ser",productsSavedDict);
         }
     }
 }

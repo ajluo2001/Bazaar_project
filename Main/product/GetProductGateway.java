@@ -20,7 +20,7 @@ public class GetProductGateway implements GetProductGatewayInterface {
 
     public Product getProduct(String productId){
         DictionaryReadWriter rw = new DictionaryReadWriter();
-        HashMap<String, Object> idToProductHashMap = rw.readFromFile("src/Main/IdToProduct.ser");
+        HashMap<String, Object> idToProductHashMap = rw.readFromFile("Main/IdToProduct.ser");
         return (Product) idToProductHashMap.get(productId);
     }
 
@@ -29,13 +29,13 @@ public class GetProductGateway implements GetProductGatewayInterface {
      * @return the hashmap of the Id to product
      */
     public HashMap<String, Object> getHashMap(){
-        File file = new File("src/Main/IdToProduct.ser");
+        File file = new File("Main/IdToProduct.ser");
         if (file.length() == 0) {
             return new HashMap<>();
         }
         else {
             DictionaryReadWriter rw = new DictionaryReadWriter();
-            return rw.readFromFile("src/Main/IdToProduct.ser");
+            return rw.readFromFile("Main/IdToProduct.ser");
         }
 
 

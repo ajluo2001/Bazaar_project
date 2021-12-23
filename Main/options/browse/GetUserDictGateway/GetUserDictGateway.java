@@ -14,6 +14,6 @@ public class GetUserDictGateway implements GetUserDictGatewayInterface {
      */
     public HashMap<String, Object> getUserDict(){
         DictionaryReadWriter rw = new DictionaryReadWriter();
-        return rw.readFromFile("src/Main/user.ser");
+        return rw.readFromFile("Main/user.ser");
     }
 }
